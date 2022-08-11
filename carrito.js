@@ -1,3 +1,13 @@
+//Funcion Saludo Bienvenida //
+function saludar (){
+    alert ("Hola! Bienvenido a supermercadito");  
+    datosUsurario = prompt ("Escribe tu nombre").toLocaleUpperCase();
+    saludoBienvenida = "Hola" + " " + datosUsurario ;
+    return saludoBienvenida 
+}
+//Ejecuto la funcion de Bienvenida //
+alert (saludar())
+
 const productos = [
     {nombre: "yerba", precio: 300},
     {nombre: "gaseosa", precio: 300},
@@ -7,7 +17,7 @@ const productos = [
     {nombre: "asado", precio: 1000},
 ]
 let carrito = []
-let seleccion = prompt ("Hola, desea comprar algun producto si o no")
+let seleccion = prompt ("Hola" + " " + datosUsurario + " "+ "desea comprar algun producto? Indique si o no")
 while (seleccion != "si" && seleccion != "no"){
     alert ("por favor ingresa si o no")
     seleccion =  prompt ("hola Desea comprar algo si o no")
@@ -16,7 +26,7 @@ if (seleccion == "si"){
     alert ("a continuacion una lista de nuestro productos")
     let todoslosProductos = productos.map (
         (producto) => producto.nombre + " " + " $" + producto.precio)
-    alert (todoslosProductos.join ( " - "))
+    alert (todoslosProductos.join( " -  \n"))
 }
 else if ( seleccion == "no") {
     alert ("muchas gracias por venir, hasta pronto")
@@ -47,7 +57,7 @@ while (seleccion != "no" ){
             break;
 
         }
-        let unidades = parseInt (prompt ("Cuantas Unidades desea llevar"))
+        do {unidades = Number (prompt ("Cuantas Unidades desea llevar"));} while ((!Number.isInteger(unidades))|| (unidades == "")) 
         carrito.push ({producto, unidades, precio})
         console.log (carrito)
     }
@@ -55,7 +65,7 @@ while (seleccion != "no" ){
 
     seleccion = prompt ("desea seguir comprando?")
     while (seleccion === "no") 
-    {alert ("Gracias por su compra")
+    {alert (datosUsurario + " " +"El total a pagar es:" + " " + carrito.reduce ((acc, el)=> acc + el.precio * el.unidades, 0))
     carrito.forEach ((carritoFinal) => 
     {console.log (`producto: ${carritoFinal.producto}, unidades: ${carritoFinal.unidades}, total a pagar ${carritoFinal.unidades * carritoFinal.precio}`)})
 
@@ -64,5 +74,5 @@ while (seleccion != "no" ){
 
 }
 
-const total = carrito.reduce ((acc, el)=> acc + el.precio * el.unidades, 0 )
-console.log (`el total a pagar es : ${total}`)
+const total = carrito.reduce ((acc, el)=> acc + el.precio * el.unidades, 0);
+console.log(`el total a pagar es : ${total}`);
